@@ -40,7 +40,6 @@ app.use((req, res, next) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", chatRoutes);
 app.use("/api/contact", contactRoutes);
-app.use("/api/call", callRoutes);
 
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
