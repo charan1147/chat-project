@@ -36,3 +36,22 @@ export const endCall = async (req, res) => {
 
   res.json({ success: true });
 };
+
+
+export const answerCall = async (req, res) => {
+  const { roomId } = req.body;
+  const call = await Message.findOne({ "callInfo.roomId": roomId });
+  if (call) {
+    call.callInfo.answeredAt = new Date();
+    await call.save();
+    const socketId = getSocketIdByUserId(call.sender);
+    if (socketId) {
+      req.io.to(socketId).emit("call:answered", {
+        roomId,
+        by: req.user._id,
+      });
+    }
+  }
+
+  res.json({ success: true, roomId });
+};
