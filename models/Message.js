@@ -12,28 +12,17 @@ const messageSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    content: {
-      type: String,
-      required: function () {
-        return this.type === "text";
-      },
-    },
-    type: {
-      type: String,
-      enum: ["text", "video", "audio"],
-      default: "text",
-    },
+    content: String,
+    type: { type: String, enum: ["text", "video", "audio"], default: "text" },
     callInfo: {
-      callType: { type: String, enum: ["video", "audio"] },
-      roomId: { type: String },
-      startedAt: { type: Date },
-      endedAt: { type: Date },
-      duration: { type: Number },
+      callType: String,
+      roomId: String,
+      startedAt: Date,
+      endedAt: Date,
+      duration: Number,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
-
-messageSchema.index({ sender: 1, receiver: 1, createdAt: 1 });
 
 export default mongoose.model("Message", messageSchema);
