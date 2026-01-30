@@ -24,5 +24,5 @@ export const getContacts = async (req, res) => {
     "contacts",
     "name email",
   );
-  res.json(user.contacts);
+  res.json({ contacts: user.contacts });
 };
