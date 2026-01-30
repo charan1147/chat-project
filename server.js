@@ -7,7 +7,6 @@ import { connectDB } from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import chatRoutes from "./routes/chatRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
-import callRoutes from "./routes/callRoutes.js";
 import { Server } from "socket.io";
 
 dotenv.config();
