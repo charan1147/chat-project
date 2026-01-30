@@ -26,7 +26,9 @@ export const getMessages = async (req, res) => {
       { sender: req.user._id, receiver: contactId },
       { sender: contactId, receiver: req.user._id },
     ],
-  }).sort("createdAt");
+  })
+    .populate("sender", "name email")
+    .sort({ createdAt: 1 });
 
   res.json(messages);
 };
